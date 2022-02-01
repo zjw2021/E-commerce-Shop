@@ -1,0 +1,32 @@
+{
+  "name": "ecom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zjw2021/Ricardian-Ecommerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zjw2021/Ricardian-Ecommerce/issues"
+  },
+  "homepage": "https://github.com/zjw2021/Ricardian-Ecommerce#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "cors": "^2.8.5",
+    "dotenv": "^15.0.0",
+    "express": "^4.17.2",
+    "lodash": "^4.17.21",
+    "nodemailer": "^6.7.2",
+    "stripe": "^8.201.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
