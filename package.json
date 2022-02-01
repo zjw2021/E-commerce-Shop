@@ -5,7 +5,8 @@
   "main": "config.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "babel server.js --out-file server.compiled.js"
   },
   "repository": {
     "type": "git",
