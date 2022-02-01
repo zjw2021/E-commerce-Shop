@@ -1,0 +1,82 @@
+@import './vars.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body,html {
+    margin: 0;
+    padding: 0;
+}
+#root {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+.container {
+  z-index: 0;
+  padding: 0 8rem;
+  margin: 3rem auto;
+}
+
+.primary {
+  color: var(--color-primary)
+}
+
+.dark {
+  color: #000;
+}
+
+.titleXl {
+  font-size: var(--font-size-title-xl);
+}
+.titleLg {
+  font-size: var(--font-size-title-lg);
+}
+.titleMd {
+  font-size: var(--font-size-title-md);
+}
+.titleSm {
+  font-size: var(--font-size-title-sm);
+}
+.titleXl, .titleLg, .titleMd, .titleSm {
+  font-family: var(--font-family-title);
+  font-weight: 500;
+}
+
+.bodyLg {
+  font-size: var(--font-size-body-lg);
+}
+.bodyMd {
+  font-size: var(--font-size-body-md);
+}
+.bodySm {
+  font-size: var(--font-size-body-sm);
+}
+.bodyLg, .bodyMd, .bodySm {
+  font-family: var(--font-family-body);
+  font-weight: 300;
+  line-height: 28px;
+}
+
+.w-bold {
+  font-weight: 600;
+}
+.w-md {
+  font-weight: 500;
+}
+.w-reg {
+  font-weight: 400;
+}
+.w-thin {
+  font-weight: 300;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.bodySpacer {
+  padding: 8px 0;
+}

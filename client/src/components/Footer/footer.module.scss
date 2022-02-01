@@ -1,0 +1,27 @@
+@import '../../styles//vars.scss';
+
+.container {
+    margin: 0;
+    padding: 3rem 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: var(--color-primary-light);
+}
+
+.hours {
+    display: flex;
+    div {
+        padding: 0 4rem;
+    }
+}
+
+.footer {
+    margin: 0;
+    padding: 2rem 8rem;
+    display: flex;
+    flex-direction: row;
+    p, a, Link {
+        padding-right:4rem;
+    }
+}

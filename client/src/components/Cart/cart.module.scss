@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    align-items: flex-start;
+
+    justify-content: space-between;
+    padding: 0 8rem;
+    margin: 3rem auto;
+}
+
+.component {
+    width: 50%;
+}
+
+.list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cartCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+
+    width: 80%;
+    height: 5rem;
+
+    margin-bottom: 1rem;
+    padding: 0 2rem 0 2rem;
+
+    border: solid 1px var(--color-shadow);
+    // box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 5px;
+
+    div {
+        div {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            p {
+                padding-right: 1.5rem;
+            }
+        }
+    }
+}
+
+.cartCard:hover {
+    cursor: pointer;
+}
+
+.infoForm {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.infoFormComponent {
+    display: flex;
+    flex-direction: column;
+    margin-right: 16rem;
+}
