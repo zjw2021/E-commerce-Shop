@@ -40,5 +40,5 @@ app.use(express.static('./client/dist'))
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
-
-app.listen(8081, () => console.log("Node server listening on port 9000!"));
+const PORT = process.env.PORT || 8081 
+app.listen(PORT, () => console.log('Server is running...'));
