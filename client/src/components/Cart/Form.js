@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext } from 'react'
 import { Button, Select, Pane, Label, Textarea, TextInput } from 'evergreen-ui'
 import CartContext from '../../context/cartContext'
+import axios from "axios";
 
 const Form = () => {
     const cartContext = useContext(CartContext)
@@ -34,6 +35,14 @@ const Form = () => {
         setLoading(false)
         resetForm()
     }
+    const onOrder = async () => {
+        await axios.post('/api/orders', {
+          name: "name",
+          email: "fake@gmail",
+          address: "fake address",
+          order: "test"
+        })
+      }
     return (
         <form ref={form} onSubmit={onSubmit}>
             <p className="titleLg">Add items</p>
@@ -61,7 +70,7 @@ const Form = () => {
             {isLoading == true ? (
                 <Button type="submit" appearance="primary" size="large" className="bodySm w-md" isLoading>+ Add Item</Button>
             ) : (
-                <Button type="submit" appearance="primary" size="large" className="bodySm w-md">+ Add Item</Button>
+                <Button type="submit" appearance="primary" size="large" className="bodySm w-md" onClick={onOrder}>+ Add Item</Button>
             )}
             <div className="bodySpacer"></div>
         </form>
