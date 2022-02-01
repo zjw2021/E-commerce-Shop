@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
     };
     contactEmail.sendMail(mail, (error) => {
       if (error) {
-        res.json({ status: "ERROR" });
+        res.json({ status: "ERROR", msg: error.message });
       } else {
         res.json({ status: "Message Sent" });
       }
