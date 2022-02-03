@@ -47,7 +47,7 @@ const CustomForm = ({ status, message, onValidated }) => {
         <div className={styles.form}>
             <form onSubmit={onSubmit}>
                 <ul style={{listStyle: "none"}}>
-                    <p className="bodyLg w-md">{msg}</p>
+                    <p className="bodyMd">{msg}</p>
                     <li>
                         <TextInput
                             style={{ marginTop: '0.5rem' }}
@@ -55,14 +55,15 @@ const CustomForm = ({ status, message, onValidated }) => {
                             onChange={onChange}
                             type="email"
                             value={email}
+                            size="large"
                             placeholder="your@email.com"
                         />
                     </li>
                     <li style={{ marginTop: '1rem' }}>
                         {isLoading == true ? (
-                            <Button type="submit" appearance="primary" size="medium" isLoading>Subscribe</Button>
+                            <Button type="submit" size="large" appearance="primary" className="bodySm w-md" isLoading>Subscribe</Button>
                         ) : (
-                            <Button type="submit" appearance="primary" size="medium" >Subscribe</Button>
+                            <Button type="submit" size="large" appearance="primary" className="bodySm w-md">Subscribe</Button>
                         )}
                     </li>
                 </ul>

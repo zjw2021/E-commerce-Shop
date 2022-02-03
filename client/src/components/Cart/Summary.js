@@ -8,7 +8,7 @@ const Summary = () => {
     const shippingRate = 5.99
 
     return (
-        <div style={{ marginTop: "4rem" }}>
+        <div style={{ marginTop: "2rem" }}>
             <p className="titleMd">Order Summary</p>
                 <div className="bodySpacer"></div>
             <p className="bodyMd">Subtotal: ${total}</p>

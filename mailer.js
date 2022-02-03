@@ -5,13 +5,13 @@ const { EMAIL, PASSWORD } = require('./config')
 const nodemailer = require("nodemailer");
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
-    host: 'smtp.gmail.com',
+    host: 'smtp.ricardian.app',
     port: 465,
-    secure: true,
+    secure: false,
     auth: {
       user: process.env.EMAIL,
-      pass: process.env.PASSWORD
-    },
+      pass: process.env.PASSWORD,
+    }
   });
 
 router.post("/", (req, res) => {

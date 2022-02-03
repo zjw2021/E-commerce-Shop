@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from 'evergreen-ui'
 import {
@@ -11,10 +12,13 @@ import OrderSummary from "./OrderSummary";
 import InfoForm from "./InfoForm";
 import CartContext from "../../context/cartContext";
 
+import emailjs, { init } from '@emailjs/browser';
+init(`user_V6XwjEU6JN2AQ2hOBYyLR`);
+
 export default function StripeForm() {
 
   const cartContext = useContext(CartContext)
-  const { cart, info, setIsConfirmation } = cartContext
+  const { cart, info, payNow, onPayNow, total, vendor } = cartContext
 
   const stripe = useStripe();
   const elements = useElements();
@@ -87,34 +91,61 @@ export default function StripeForm() {
   };
 
   const onOrder = async () => {
-    await axios.post('/api/orders', {
+    // await axios.post('/api/orders', {
+    //   name: info.name,
+    //   email: info.email,
+    //   address: info.college + ' ' + info.dorm,
+    //   order: cart
+    // })
+    const orderRecipt = {
       name: info.name,
       email: info.email,
       address: info.college + ' ' + info.dorm,
-      order: cart
-    })
+      order: JSON.stringify(cart),
+      size: cart.length,
+      subtotal: total,
+      total: (total + 5.99).toFixed(2),
+      vendor: vendor
+    }
+
+    emailjs.send(`service_8n7e75n`, `template_thvk7nu`, orderRecipt, `user_V6XwjEU6JN2AQ2hOBYyLR`)
+    .then((result) => {
+        console.log(result.text);
+    }, (error) => {
+        console.log(error.text);
+    });
   }
 
   return (
-    <div className="container" style={{ marginTop: "0rem"}}>
+    <div className="container" style={{ marginTop: "0rem" }}>
       <div>
-        <div style={{ display: "flex", flexDirection: "row", alignItems: "center"}}>
-        <Summary />
-        <OrderSummary />
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <Summary />
+          <OrderSummary />
         </div>
         <InfoForm />
       </div>
-      <form id="payment-form" onSubmit={handleSubmit}>
-        <PaymentElement id="payment-element" />
-        {message && <div id="payment-message" className="bodyMd">{message}</div>}
-        <div className="bodySpacer"></div>
-        <div className="bodySpacer"></div>
-        {isLoading ? (
-          <Button type="submit" appearance="primary" size="large" className="bodySm w-md" isLoading>Pay Now</Button>
-        ) : (
-          <Button type="submit" appearance="primary" size="large" className="bodySm w-md" onClick={onOrder}>Pay Now</Button>
+      {payNow ? (
+        <form id="payment-form" onSubmit={handleSubmit}>
+          <PaymentElement id="payment-element" />
+          {message && <div id="payment-message" className="bodyMd">{message}</div>}
+          <div className="bodySpacer"></div>
+          <div className="bodySpacer"></div>
+          {isLoading ? (
+            <Button type="submit" appearance="primary" size="large" className="bodySm w-md" isLoading>Order</Button>
+          ) : (
+            <Button type="submit" appearance="primary" size="large" className="bodySm w-md" onClick={onOrder}>Order</Button>
+          )}
+        </form>)
+        : (
+          <div style={{ display: "flex", alignContent: "center" }}>
+            <Button appearance="primary" size="large" className="bodySm w-md" onClick={() => onPayNow()}>Pay Now</Button>
+            <p className="bodyLg" style={{ margin: "0 1.5rem" }}>Or</p>
+            <Link to='/confirmation'>
+              <Button size="large" className="bodySm w-md" onClick={onOrder}>Pay Later</Button>
+            </Link>
+          </div>
         )}
-      </form>
     </div>
   );
 }

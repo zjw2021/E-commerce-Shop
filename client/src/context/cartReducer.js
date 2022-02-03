@@ -2,7 +2,9 @@ import {
     ADD_TO_CART,
     REMOVE_FROM_CART,
     FILL_OUT_INFO,
-    IS_CHECKOUT
+    IS_CHECKOUT,
+    PAY_NOW,
+    SET_VENDOR
 } from './types'
 
 const cartReducer = (state, action) => {
@@ -16,7 +18,7 @@ const cartReducer = (state, action) => {
         case REMOVE_FROM_CART:
             const cartState = [...state.cart]
             cartState.splice(action.payload.index, 1)
-            const totalState = state.total - (action.payload.item * action.payload.quantity )
+            const totalState = state.total - (action.payload.item * action.payload.quantity)
             return {
                 ...state,
                 cart: cartState,
@@ -31,6 +33,16 @@ const cartReducer = (state, action) => {
             return {
                 ...state,
                 isCheckout: action.payload
+            }
+        case PAY_NOW:
+            return {
+                ...state,
+                payNow: action.payload
+            }
+        case SET_VENDOR:
+            return {
+                ...state,
+                vendor: action.payload
             }
         default:
             return state

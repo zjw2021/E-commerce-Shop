@@ -10,21 +10,15 @@ const InfoForm = () => {
     const [infoForm, setInfoForm] = useState({
         email: '',
         name: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: ''
+        college: '',
+        dorm: ''
     })
-    const { email, name, address, city, state, zip, college, dorm } = infoForm
+    const { email, name, college, dorm } = infoForm
 
     const resetForm = () => setInfoForm(
         {
             email: '',
             name: '',
-            address: '',
-            city: '',
-            state: '',
-            zip: '',
             college: '',
             dorm: ''
         })

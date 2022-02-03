@@ -6,7 +6,9 @@ import {
     ADD_TO_CART,
     REMOVE_FROM_CART,
     FILL_OUT_INFO,
-    IS_CHECKOUT
+    IS_CHECKOUT,
+    PAY_NOW,
+    SET_VENDOR
 } from './types'
 
 
@@ -15,7 +17,9 @@ const CartState = props => {
         cart: [],
         info: null,
         total: 0,
-        isCheckout: false
+        isCheckout: false,
+        payNow: false,
+        vendor: null
     }
 
     const [state, dispatch] = useReducer(cartReducer, initialState)
@@ -60,6 +64,20 @@ const CartState = props => {
             payload: true
         })
     }
+
+    const onPayNow = () => {
+        dispatch({
+            type: PAY_NOW,
+            payload: true
+        })
+    }
+
+    const onSetVendor = (vendor) => {
+        dispatch({
+            type: SET_VENDOR,
+            payload: vendor
+        })
+    }
     
     return (
         <CartContext.Provider
@@ -68,10 +86,14 @@ const CartState = props => {
                 total: state.total,
                 info: state.info,
                 isCheckout: state.isCheckout,
+                payNow: state.payNow,
+                vendor: state.vendor,
                 addToCart,
                 removeFromCart,
                 fillOutInfo,
-                setIsCheckout
+                setIsCheckout,
+                onPayNow,
+                onSetVendor
             }}>
             {props.children}
         </CartContext.Provider>
