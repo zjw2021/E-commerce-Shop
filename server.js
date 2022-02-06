@@ -6,7 +6,7 @@ const path = require('path');
 require('dotenv').config();
 
 // This is your test secret API key.
-const stripe = require("stripe")('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');
+const stripe = require("stripe")(`${process.env.STRIPE_KEY_BACKEND}`);
 app.use(express.static("public"));
 app.use(express.json());
 
@@ -40,5 +40,5 @@ app.use(express.static('./client/dist'))
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
-const PORT = process.env.PORT || 9000 
+const PORT = process.env.PORT || 8081 
 app.listen(PORT, () => console.log('Server is running...'));
