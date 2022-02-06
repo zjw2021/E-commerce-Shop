@@ -20,6 +20,7 @@ export default function StripeForm() {
   const cartContext = useContext(CartContext)
   const { cart, info, payNow, onPayNow, total, vendor } = cartContext
 
+
   const stripe = useStripe();
   const elements = useElements();
 
@@ -91,12 +92,7 @@ export default function StripeForm() {
   };
 
   const onOrder = async () => {
-    // await axios.post('/api/orders', {
-    //   name: info.name,
-    //   email: info.email,
-    //   address: info.college + ' ' + info.dorm,
-    //   order: cart
-    // })
+
     const orderRecipt = {
       name: info.name,
       email: info.email,
@@ -104,16 +100,16 @@ export default function StripeForm() {
       order: JSON.stringify(cart),
       size: cart.length,
       subtotal: total,
-      total: (total + 5.99).toFixed(2),
+      total: (total + 3.99).toFixed(2),
       vendor: vendor
     }
 
     emailjs.send(`service_8n7e75n`, `template_thvk7nu`, orderRecipt, `user_V6XwjEU6JN2AQ2hOBYyLR`)
-    .then((result) => {
+      .then((result) => {
         console.log(result.text);
-    }, (error) => {
+      }, (error) => {
         console.log(error.text);
-    });
+      });
   }
 
   return (
@@ -139,11 +135,21 @@ export default function StripeForm() {
         </form>)
         : (
           <div style={{ display: "flex", alignContent: "center" }}>
-            <Button appearance="primary" size="large" className="bodySm w-md" onClick={() => onPayNow()}>Pay Now</Button>
+
+            {info !== null && (info.email !== "" && info.name !== "" && info.college !== "" && info.dorm !== "") ? (
+              <Button appearance="primary" size="large" className="bodySm w-md" onClick={() => onPayNow()}>Pay Now</Button>
+            ) : (
+              <Button appearance="primary" size="large" className="bodySm w-md" disabled>Pay Now</Button>
+            )}
+
             <p className="bodyLg" style={{ margin: "0 1.5rem" }}>Or</p>
-            <Link to='/confirmation'>
-              <Button size="large" className="bodySm w-md" onClick={onOrder}>Pay Later</Button>
-            </Link>
+            {info !== null && (info.email !== "" && info.name !== "" && info.college !== "" && info.dorm !== "") ? (
+              <Link to='/confirmation'>
+                <Button size="large" className="bodySm w-md" onClick={onOrder}>Pay Later</Button>
+              </Link>
+            ) : (
+              <Button size="large" className="bodySm w-md" disabled>Pay Later</Button>
+            )}
           </div>
         )}
     </div>

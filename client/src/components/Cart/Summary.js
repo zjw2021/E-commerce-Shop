@@ -5,7 +5,7 @@ const Summary = () => {
     const cartContext = useContext(CartContext)
     const { total } = cartContext
 
-    const shippingRate = 5.99
+    const shippingRate = 3.99
 
     return (
         <div style={{ marginTop: "2rem" }}>

@@ -5,7 +5,7 @@ import CartContext from '../../context/cartContext'
 
 const InfoForm = () => {
     const cartContext = useContext(CartContext)
-    const { fillOutInfo, info } = cartContext
+    const { fillOutInfo } = cartContext
 
     const [infoForm, setInfoForm] = useState({
         email: '',
