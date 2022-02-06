@@ -5,7 +5,7 @@ const cors = require("cors");
 const path = require('path');
 require('dotenv').config();
 
-// This is your test secret API key.
+
 const stripe = require("stripe")(`${process.env.STRIPE_KEY_BACKEND}`);
 app.use(express.static("public"));
 app.use(express.json());
